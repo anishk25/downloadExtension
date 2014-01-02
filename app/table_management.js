@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var table_row = $(this).closest('tr');	
 		var url_name = table_row.find(".url_col").text();
 		table_row.remove();      
-		localStorage.remove(url_name);
+		localStorage.removeItem(url_name);
 		localStorage.setItem('table', mytable.innerHTML);	
 		
 		return false;
@@ -27,7 +27,8 @@ $(document).ready(function(){
 		}
 		
 		// storing url and folder in local storage
-		localStorage.setItem(urlName,folder);	
+		var filePath = folder.replace("\\","\\\\");
+		localStorage.setItem(urlName,filePath);	
 
 		// adding row in table
 		$('#mytable').append('<tr><td class = "url_col">' + urlName + '</td><td class = "folder_col">' + folder + '</td><td><button class = "dltbtn">delete</button></td></tr>');
@@ -37,7 +38,7 @@ $(document).ready(function(){
 	
 	function load() {
 		// when the page loads
-		if ( localStorage.getItem('table') ) {
+		if ( localStorage.getItem('table')) {
 			mytable.innerHTML = localStorage.getItem('table'); 			
 		}		
 	}

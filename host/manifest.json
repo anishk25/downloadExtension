@@ -4,6 +4,6 @@
   "path": "NativeFolderCreator.exe",
   "type": "stdio",
   "allowed_origins": [
-    "chrome-extension://lkjmfjoiglcjhlggiggpphmkhagenkme/"		
+    "chrome-extension://hkdeomodfgebnbgegloeokjboacfiain/"		
   ]  
 }
