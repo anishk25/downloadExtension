@@ -30,10 +30,12 @@ chrome.downloads.onChanged.addListener(function (item){
 		var length = localStorage.length;
 		var newFilePath;
 		var filePathFound = false;
+		console.log("local storage length: " + length);
 		
 		//searching through local storage for the URL keys
 		for(var i = 0;i < length; i++){
-			if(fileURL.search(localStorage.key(i)) >= 0){
+			console.log("key: " + localStorage.key(i));
+			if(fileURL.search(localStorage.key(i)) >= 0){				
 				filePathFound = true;
 				newFilePath = localStorage.getItem(localStorage.key(i));
 				break;
