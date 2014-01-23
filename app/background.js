@@ -37,7 +37,8 @@ chrome.downloads.onChanged.addListener(function (item){
 			console.log("key: " + localStorage.key(i));
 			if(fileURL.search(localStorage.key(i)) >= 0){				
 				filePathFound = true;
-				newFilePath = localStorage.getItem(localStorage.key(i));
+				var f_path = localStorage.getItem(localStorage.key(i));
+				newFilePath = f_path.replace('/','\\');
 				break;
 			}
 		}
@@ -75,7 +76,7 @@ function connectToNativeApp(oldFilePath,newFilePath,fileName,fileType){
 	console.log('connecting to native app');
 	var port = chrome.runtime.connectNative("com.google.chrome.example.nativefoldercreator");	
 	//sending message to native app in JSON format
-	port.postMessage({oldPath:oldFilePath,newPath:newFilePath,type:fileType,name:fileName});	
+	port.postMessage({commandType:"organizeFiles", oldPath:oldFilePath,newPath:newFilePath,type:fileType,name:fileName});	
 	port.onMessage.addListener(function(msg) {
 		console.log("Received: " + JSON.stringify(msg));		
 	});	
